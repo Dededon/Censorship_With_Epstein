@@ -1,0 +1,6 @@
+
+*.pyc
+*.vsidx
+*.lock
+*.json
+*.sqlite

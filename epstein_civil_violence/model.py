@@ -293,6 +293,10 @@ class EpsteinCivilViolence(mesa.Model):
         return model.censored_links
 
     @staticmethod
+    def get_number_of_edges(model):
+        return model.number_of_edges
+
+    @staticmethod
     def get_average_jail_term(model):
         """
         Helper method to calculate average jail term.

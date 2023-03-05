@@ -185,15 +185,21 @@ class EpsteinCivilViolence(mesa.Model):
         self.schedule.step()
         # Censor links
       #  print(self.p_link_censor)
-        self.active_links = len(self.link_to_censor)
-        self.activated_link_ratio = self.get_active_link_ratio(self)
+     #   self.active_links = len(self.link_to_censor)
+    #    self.activated_link_ratio = self.get_active_link_ratio(self)
 
+        count_inactivated = 0
         for u, v in self.link_to_censor:
             if self.G[u][v]['censor_steps'] == 0:
                 if self.random.random() < self.p_link_censor: #self.p_link_censo
                     self.G[u][v]['censor_steps'] = self.t_censor
                     self.censored_links += 1
-
+            else:
+                count_inactivated += 1
+        
+        self.active_links = len(self.link_to_censor) - count_inactivated
+        self.activated_link_ratio = self.get_active_link_ratio(self)
+        
         self.link_to_censor = set()
       #  print(self.censored_links)
         # collect data
